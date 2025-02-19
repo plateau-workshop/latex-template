@@ -1,32 +1,9 @@
-\ProvidesFile{acmauthoryear.bbx}[2022-02-14 v0.1 biblatex bibliography style]
+\ProvidesFile{plateaunumeric.bbx}[2017-09-27 v0.1 biblatex bibliography style]
 
 % Inherit a default style
-\RequireBibliographyStyle{authoryear-comp}
+\RequireBibliographyStyle{trad-plain}
 
-%%% New command definitions from trad-standard.bbx
 
-\newcommand*{\newcommaunit}{\@ifstar\newcommaunitStar\newcommaunitNoStar}
-\newcommand*{\newcommaunitStar}{\setunit*{\addcomma\space}}
-\newcommand*{\newcommaunitNoStar}{\setunit{\addcomma\space}}
-
-%%% Forward compatibility for date+extradate
-
-\ifcsundef{ifbibmacroundef}{
-  \ifcsundef{abx@macro@date+extradate}{ %%% For really really old biblatex that miss \ifbibmacroundef
-    \blx@warning{bibmacro 'date+extradate' is missing.\MessageBreak
-      Please consider updating your version of biblatex.\MessageBreak
-      Using 'date+extrayear' instead}%
-    \providebibmacro*{date+extradate}{\usebibmacro{date+extrayear}}
-    }{}
-  }
-  {
-  \ifbibmacroundef{date+extradate}{
-    \blx@warning{bibmacro 'date+extradate' is missing.\MessageBreak
-      Please consider updating your version of biblatex.\MessageBreak
-      Using 'date+extrayear' instead}%
-    \providebibmacro*{date+extradate}{\usebibmacro{date+extrayear}}
-    }{}
-  }
 
 %%% Localisation strings for ACM
 
@@ -74,6 +51,8 @@
     {\addcomma\space}
     {}}
 \renewbibmacro*{url}{\iffieldundef{url}{\printlist{urls}}{\printfield{url}}}
+
+
 
 %%% Bibmacro definitions
 
@@ -160,9 +139,7 @@
      \setunit{\addcomma\space}%
      \usebibmacro{editor+othersstrg}%
      \clearname{editor}}
-     {\iflistundef{organization}{}{\printlist{organization}}}
-     \usebibmacro{date+extradate}
-     }
+    {\iflistundef{organization}{}{\printlist{organization}}}}
 
 
 \newbibmacro*{issue-issue}{%
@@ -317,6 +294,8 @@
   \usebibmacro{begentry}%
   \usebibmacro{author/translator+others}%
   \setunit{\labelnamepunct}\newblock%
+  \usebibmacro{year}%
+  \newunit%
   \usebibmacro{title}%
   \newunit%
   \printlist{language}%
@@ -353,6 +332,8 @@
   \usebibmacro{begentry}%
   \usebibmacro{author/editor+others/translator+others}%
   \setunit{\labelnamepunct}\newblock
+  \usebibmacro{year}%
+  \newunit%
   \usebibmacro{maintitle+title}%
   \newunit%
   \printlist{language}%
@@ -405,6 +386,8 @@
     {\usebibmacro{byeditor+others}}%
     {\usebibmacro{author/translator+others}}%
   \setunit{\labelnamepunct}\newblock
+  \usebibmacro{year}
+  \newunit\newblock
   \usebibmacro{title}%
   \newunit
   \printlist{language}%
@@ -459,6 +442,8 @@
   \usebibmacro{begentry}%
   \usebibmacro{author/translator+others}%
   \setunit{\labelnamepunct}\newblock
+  \usebibmacro{year}
+  \newunit\newblock
   \usebibmacro{title}%
   \newunit
   \printlist{language}%
@@ -510,6 +495,8 @@
   \usebibmacro{begentry}%
   \usebibmacro{author/translator+others}%
   \setunit{\labelnamepunct}\newblock
+  \usebibmacro{year}
+  \newunit\newblock
   \usebibmacro{title}%
   \newunit
   \printlist{language}%
@@ -561,6 +548,8 @@
   \usebibmacro{begentry}%
   \usebibmacro{author/editor+others}%
   \setunit{\labelnamepunct}\newblock
+  \usebibmacro{year}
+  \newunit\newblock
   \usebibmacro{title}%
   \newunit
   \printlist{language}%
@@ -610,6 +599,8 @@
   \usebibmacro{begentry}%
   \usebibmacro{author/editor+others/translator+others}%
   \setunit{\labelnamepunct}\newblock
+  \usebibmacro{year}
+  \newunit\newblock
   \usebibmacro{title}%
   \newunit
   \printlist{language}%
@@ -646,6 +637,8 @@
   \usebibmacro{bibindex}%
   \usebibmacro{begentry}%
   \usebibmacro{author/editor+others/translator+others}%
+  \setunit{\labelnamepunct}\newblock
+  \usebibmacro{year}%
   \setunit{\labelnamepunct}\newblock
   \usebibmacro{title}%
   \newunit
@@ -688,6 +681,8 @@
   \usebibmacro{begentry}%
   \usebibmacro{author}%
   \setunit{\labelnamepunct}\newblock
+  \usebibmacro{year}%
+  \newunit
   \usebibmacro{title}%
   \newunit
   \printlist{language}%
@@ -728,6 +723,8 @@
   \usebibmacro{begentry}%
   \usebibmacro{editor}%
   \setunit{\labelnamepunct}\newblock
+  \usebibmacro{year}
+  \newunit
   \usebibmacro{title+issuetitle}%
   \newunit
   \printlist{language}%
@@ -759,6 +756,8 @@
   \usebibmacro{begentry}%
   \usebibmacro{author}%
   \setunit{\labelnamepunct}\newblock
+  \usebibmacro{year}
+  \newunit
   \usebibmacro{title}%
   \newunit
   \printlist{language}%
@@ -802,6 +801,8 @@
   \usebibmacro{begentry}%
   \usebibmacro{author}%
   \setunit{\labelnamepunct}\newblock
+  \usebibmacro{year}
+  \newunit
   \usebibmacro{title}%
   \newunit
   \printlist{language}%
@@ -849,10 +850,7 @@
      \step[typesource=artifactdataset,typetarget=dataset]
    }
   }
-}
-
-%%% Compatibility with ACM bibtex formatting
-
+}     
 
 %
 % Show given name first in the reference list
@@ -864,22 +862,9 @@
 %
 \renewcommand*{\bibfont}{\bibliofont\footnotesize}
 
-%
-% Remove parentheses from date+extradate
-%
-\RequirePackage{xpatch}
-\xpatchbibmacro{date+extradate}{%
-  \printtext[parens]%
-}{%
-  \newblock\setunit*{.\space}%
-  \printtext%
-}{}{}
-
-
 %%% Set option values for ACM style
 
 \ExecuteBibliographyOptions{
-  dashed=false,     % Do not use dashes for bibliography items with the same set of authors
   labeldate=year,
   abbreviate=true,
   dateabbrev=true,

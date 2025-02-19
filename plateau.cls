@@ -37,9 +37,9 @@
 %%   Right brace   \}     Tilde         \~}
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{acmart}
+\ProvidesClass{plateau}
 [2024/12/28 v2.12 Typesetting articles for the Association for Computing Machinery]
-\def\@classname{acmart}
+\def\@classname{plateau}
 \InputIfFileExists{acmart-preload-hook.tex}{%
   \ClassWarning{\@classname}{%
     I am loading acmart-preload-hook.tex. You are fully responsible
