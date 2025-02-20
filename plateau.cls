@@ -73,7 +73,8 @@
     \PackageInfo{\@classname}{Not using screen mode}%
   \fi}{\PackageError{\@classname}{The option screen can be either true or
     false}}
-\ExecuteOptionsX{screen=false}
+\ExecuteOptionsX{acmsmall=true}
+
 \define@boolkey+{\@classname.cls}[@ACM@]{urlbreakonhyphens}[true]{%
   \if@ACM@urlbreakonhyphens
     \PackageInfo{\@classname}{Using breaking urls on hyphens}%
@@ -1538,23 +1539,23 @@
 \def\@journalNameShort{\@journalName}%
 \def\@permissionCodeOne{XXXX-XXXX}%
 \def\@permissionCodeTwo{\@permissionCodeOne}%
-\newcommand\acmConference[4][]{%
-  \gdef\acmConference@shortname{#1}%
-  \gdef\acmConference@name{#2}%
-  \gdef\acmConference@date{#3}%
-  \gdef\acmConference@venue{#4}%
-  \ifx\acmConference@shortname\@empty
-    \gdef\acmConference@shortname{#2}%
+\newcommand\plateauConference[4][]{%
+  \gdef\plateauConference@shortname{#1}%
+  \gdef\plateauConference@name{#2}%
+  \gdef\plateauConference@date{#3}%
+  \gdef\plateauConference@venue{#4}%
+  \ifx\plateauConference@shortname\@empty
+    \gdef\plateauConference@shortname{#2}%
   \fi
   \global\@ACM@journal@bibstripfalse
   \ifx\@acmBooktitle\@empty\relax
-    \acmBooktitle{Proceedings of \acmConference@name
-      \ifx\acmConference@name\acmConference@shortname\else
-      \ (\acmConference@shortname)\fi}%
+    \acmBooktitle{Proceedings of \plateauConference@name
+      \ifx\plateauConference@name\plateauConference@shortname\else
+      \ (\plateauConference@shortname)\fi}%
   \fi
 }
 \if@ACM@journal\else
-\acmConference[Conference'17]{ACM Conference}{July 2017}{Washington,
+\plateauConference[Conference'17]{ACM Conference}{July 2017}{Washington,
   DC, USA}%
 \fi
 \def\acmBooktitle#1{\gdef\@acmBooktitle{#1}}
@@ -1974,8 +1975,7 @@
   \or % acmcopyright
   ACM\@.
   \or % acmlicensed
-  Copyright held by the owner/author(s). Publication rights licensed to
-  ACM\@.
+  Copyright held by the owner/author(s).
   \or % rightsretained
   Copyright held by the owner/author(s).
   \or % usgov
@@ -2241,7 +2241,7 @@
          \if@ACM@engage
             {\itshape \@acmBooktitle, \@acmYear.}\par
          \else
-         {\itshape \acmConference@shortname, \acmConference@venue}\par
+         {\itshape \plateauConference@shortname, \plateauConference@venue}\par
          \fi
        \fi
     \fi
@@ -2275,7 +2275,6 @@
               ACM~\@permissionCodeTwo/\@acmYear/\@acmMonth-ART\@acmArticle\\
               \@formatdoi{\@acmDOI}%
             \else % Conference
-              \ifx\@acmISBN\@empty\else ACM~ISBN~\@acmISBN\\\fi
               \ifx\@acmDOI\@empty\else\@formatdoi{\@acmDOI}\fi%
             \fi
           \fi
@@ -2912,8 +2911,7 @@
        \ifx\@acmEditors\@empty\textit{.}\else
          \andify\@acmEditors\textit{, }\@acmEditors~\@editorsAbbrev.%
        \fi\
-       ACM, New York, NY, USA%
-         \@article@string\unskip, \ref{TotPages}~\@pages@word.
+       \ref{TotPages}~\@pages@word.
     \fi
   \fi
   \ifx\@acmDOI\@empty\else\@formatdoi{\@acmDOI}\fi
@@ -3069,8 +3067,8 @@
             Vol. \@acmVolume, No.~\@acmNumber, Article \@acmArticle.
             Publication date: \@acmPubDate.}%
         \else
-          \fancyfoot[RO,LE]{\footnotesize \acmConference@shortname,
-            \acmConference@date, \acmConference@venue.}%
+          \fancyfoot[RO,LE]{\footnotesize \plateauConference@shortname,
+            \plateauConference@date, \plateauConference@venue.}%
          \fi
       \fi
     \else % Proceedings
@@ -3089,11 +3087,11 @@
             \ACM@linecountR}%
         \else
           \fancyhead[LE]{\ACM@linecountL\@headfootfont\footnotesize
-            \acmConference@shortname,
-            \acmConference@date, \acmConference@venue}%
+            \plateauConference@shortname,
+            \plateauConference@date, \plateauConference@venue}%
           \fancyhead[RO]{\@headfootfont
-            \acmConference@shortname,
-            \acmConference@date, \acmConference@venue\ACM@linecountR}%
+            \plateauConference@shortname,
+            \plateauConference@date, \plateauConference@venue\ACM@linecountR}%
          \fi
       \fi
     \fi
@@ -3113,11 +3111,11 @@
           \ACM@linecountR}%
       \else
         \fancyhead[LE]{\ACM@linecountL\@headfootfont
-          \acmConference@shortname,
-          \acmConference@date, \acmConference@venue}%
+          \plateauConference@shortname,
+          \plateauConference@date, \plateauConference@venue}%
         \fancyhead[RO]{\@headfootfont
-          \acmConference@shortname,
-          \acmConference@date, \acmConference@venue\ACM@linecountR}%
+          \plateauConference@shortname,
+          \plateauConference@date, \plateauConference@venue\ACM@linecountR}%
        \fi
     \fi
   \fi
@@ -3186,8 +3184,8 @@
             Vol. \@acmVolume, No.~\@acmNumber, Article \@acmArticle.
             Publication date: \@acmPubDate.}%
         \else
-          \fancyfoot[RO,LE]{\footnotesize \acmConference@shortname,
-            \acmConference@date, \acmConference@venue.}%
+          \fancyfoot[RO,LE]{\footnotesize \plateauConference@shortname,
+            \plateauConference@date, \plateauConference@venue.}%
          \fi
       \fi%
       \fancyhead[L]{\ACM@linecountL\@acmBadgeL}%

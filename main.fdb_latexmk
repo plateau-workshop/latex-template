@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1740001621 "/Users/icmccorm/git/plateau-latex-template/main.tex" "main.pdf" "main" 1740001622
-  "/Users/icmccorm/git/plateau-latex-template/main.tex" 1740001621 1253 cdb206f5141ae2a382380786fca34c5c ""
+["pdflatex"] 1740002521 "/Users/icmccorm/git/plateau-latex-template/main.tex" "main.pdf" "main" 1740002522
+  "/Users/icmccorm/git/plateau-latex-template/main.tex" 1740002521 1125 2222c0d8caabc08b65df2978171ae373 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc" 1490131464 2921 8ca0eb0831f9bc5da080d3697cfe67bf ""
   "/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc" 1490131464 2933 9ad527ce78d7c5fa0a642dead095f172 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc" 1490131464 2934 a4a9158faed2e9e89c771b4e3b7fc12f ""
@@ -112,7 +112,6 @@
   "/usr/local/texlive/2022/texmf-dist/tex/latex/graphics-cfg/color.cfg" 1459978653 1213 620bba36b25224fa9b7e1ccb4ecb76fd ""
   "/usr/local/texlive/2022/texmf-dist/tex/latex/graphics-cfg/graphics.cfg" 1465944070 1224 978390e9c2234eab29404bc21b268d1e ""
   "/usr/local/texlive/2022/texmf-dist/tex/latex/graphics-def/pdftex.def" 1601931164 19103 48d29b6e2a64cb717117ef65f107b404 ""
-  "/usr/local/texlive/2022/texmf-dist/tex/latex/graphics/color.sty" 1639603921 7197 eb6c1ebf41667a05cb50c23c19d5e8bc ""
   "/usr/local/texlive/2022/texmf-dist/tex/latex/graphics/graphics.sty" 1622581934 18399 7e40f80366dffb22c0e7b70517db5cb4 ""
   "/usr/local/texlive/2022/texmf-dist/tex/latex/graphics/graphicx.sty" 1636758526 7996 a8fb260d598dcaf305a7ae7b9c3e3229 ""
   "/usr/local/texlive/2022/texmf-dist/tex/latex/graphics/keyval.sty" 1622581934 2671 4de6781a30211fe0ea4c672e4a2a8166 ""
@@ -168,10 +167,10 @@
   "/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1647878959 4410336 7d30a02e9fa9a16d7d1f8d037ba69641 ""
   "/usr/local/texlive/2022/texmf-var/web2c/pdftex/pdflatex.fmt" 1670781658 2826433 1b327c288059d603ae5ebf5067683ca4 ""
   "/usr/local/texlive/2022/texmf.cnf" 1647878952 577 209b46be99c9075fd74d4c0369380e8c ""
-  "main.aux" 1740001622 1119 79f27cd98ba076ed699a9649cd938f38 "pdflatex"
-  "main.out" 1740001622 200 610cc6b9652203b46dd83ec3a4fd2400 "pdflatex"
-  "main.tex" 1740001621 1253 cdb206f5141ae2a382380786fca34c5c ""
-  "plateau.cls" 1739980279 119770 ea71989eddb400d6d49070c333b14d1c ""
+  "main.aux" 1740002522 1119 79f27cd98ba076ed699a9649cd938f38 "pdflatex"
+  "main.out" 1740002522 200 610cc6b9652203b46dd83ec3a4fd2400 "pdflatex"
+  "main.tex" 1740002521 1125 2222c0d8caabc08b65df2978171ae373 ""
+  "plateau.cls" 1740002514 119738 8763439250262f3b0f6c7c0dae644785 ""
   (generated)
   "main.aux"
   "main.log"
