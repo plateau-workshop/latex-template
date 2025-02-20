@@ -47,6 +47,8 @@
 \RequirePackage{xkeyval}
 \RequirePackage{xstring}
 \RequirePackage{iftex}
+\RequirePackage{nth}
+
 \define@choicekey*+{\@classname.cls}{format}[\ACM@format\ACM@format@nr]{%
   manuscript, acmsmall, acmlarge, acmtog, sigconf, siggraph,
   sigplan, sigchi, sigchi-a, acmengage, acmcp}[manuscript]{}{%
@@ -73,7 +75,8 @@
     \PackageInfo{\@classname}{Not using screen mode}%
   \fi}{\PackageError{\@classname}{The option screen can be either true or
     false}}
-\ExecuteOptionsX{screen=false}
+\ExecuteOptionsX{acmsmall=true}
+
 \define@boolkey+{\@classname.cls}[@ACM@]{urlbreakonhyphens}[true]{%
   \if@ACM@urlbreakonhyphens
     \PackageInfo{\@classname}{Using breaking urls on hyphens}%
@@ -1538,23 +1541,23 @@
 \def\@journalNameShort{\@journalName}%
 \def\@permissionCodeOne{XXXX-XXXX}%
 \def\@permissionCodeTwo{\@permissionCodeOne}%
-\newcommand\acmConference[4][]{%
-  \gdef\acmConference@shortname{#1}%
-  \gdef\acmConference@name{#2}%
-  \gdef\acmConference@date{#3}%
-  \gdef\acmConference@venue{#4}%
-  \ifx\acmConference@shortname\@empty
-    \gdef\acmConference@shortname{#2}%
+\newcommand\plateauConference[4][]{%
+  \gdef\plateauConference@shortname{#1}%
+  \gdef\plateauConference@name{the \nth{#2} PLATEAU Workshop on Programming Languages and Human-Computer Interaction}%
+  \gdef\plateauConference@date{#3}%
+  \gdef\plateauConference@venue{#4}%
+  \ifx\plateauConference@shortname\@empty
+    \gdef\plateauConference@shortname{#2}%
   \fi
   \global\@ACM@journal@bibstripfalse
   \ifx\@acmBooktitle\@empty\relax
-    \acmBooktitle{Proceedings of \acmConference@name
-      \ifx\acmConference@name\acmConference@shortname\else
-      \ (\acmConference@shortname)\fi}%
+    \acmBooktitle{Proceedings of \plateauConference@name
+      \ifx\plateauConference@name\plateauConference@shortname\else
+      \ (\plateauConference@shortname)\fi}%
   \fi
 }
 \if@ACM@journal\else
-\acmConference[Conference'17]{ACM Conference}{July 2017}{Washington,
+\plateauConference[Conference'17]{ACM Conference}{July 2017}{Washington,
   DC, USA}%
 \fi
 \def\acmBooktitle#1{\gdef\@acmBooktitle{#1}}
@@ -1719,6 +1722,7 @@
 \def\acmISBN#1{\def\@acmISBN{#1}}
 \acmISBN{978-x-xxxx-xxxx-x/YYYY/MM}
 \def\acmDOI#1{\def\@acmDOI{#1}}
+\def\plateauDOI#1{\def\@acmDOI{#1}}
 \acmDOI{10.1145/nnnnnnn.nnnnnnn}
 \newlength\@ACM@badge@width
 \setlength\@ACM@badge@width{3pc}
@@ -1974,8 +1978,7 @@
   \or % acmcopyright
   ACM\@.
   \or % acmlicensed
-  Copyright held by the owner/author(s). Publication rights licensed to
-  ACM\@.
+  Copyright held by the owner/author(s).
   \or % rightsretained
   Copyright held by the owner/author(s).
   \or % usgov
@@ -2241,7 +2244,7 @@
          \if@ACM@engage
             {\itshape \@acmBooktitle, \@acmYear.}\par
          \else
-         {\itshape \acmConference@shortname, \acmConference@venue}\par
+         {\itshape \plateauConference@shortname, \plateauConference@venue}\par
          \fi
        \fi
     \fi
@@ -2275,7 +2278,6 @@
               ACM~\@permissionCodeTwo/\@acmYear/\@acmMonth-ART\@acmArticle\\
               \@formatdoi{\@acmDOI}%
             \else % Conference
-              \ifx\@acmISBN\@empty\else ACM~ISBN~\@acmISBN\\\fi
               \ifx\@acmDOI\@empty\else\@formatdoi{\@acmDOI}\fi%
             \fi
           \fi
@@ -2912,8 +2914,7 @@
        \ifx\@acmEditors\@empty\textit{.}\else
          \andify\@acmEditors\textit{, }\@acmEditors~\@editorsAbbrev.%
        \fi\
-       ACM, New York, NY, USA%
-         \@article@string\unskip, \ref{TotPages}~\@pages@word.
+       \ref{TotPages}~\@pages@word.
     \fi
   \fi
   \ifx\@acmDOI\@empty\else\@formatdoi{\@acmDOI}\fi
@@ -3043,8 +3044,11 @@
       \fancyhead[RE]{\@headfootfont\@shortauthors}%
       \fancyhead[LO]{\ACM@linecountL\@headfootfont\shorttitle}%
       \if@ACM@nonacm\else%
-        \fancyfoot[RO,LE]{\footnotesize \@journalNameShort, Vol. \@acmVolume, No.
-        \@acmNumber, Article \@acmArticle.  Publication date: \@acmPubDate.}%
+        \fancyfoot[RO,LE]{\footnotesize 
+        %\@journalNameShort, Vol. \@acmVolume, No.
+        %\@acmNumber, Article \@acmArticle.
+          PLATEAU Workshop on Programming Languages and Human-Computer Interaction.
+          Publication date: \@acmPubDate.}%
       \fi
     \or % acmlarge
       \fancyhead[LE]{\ACM@linecountL\@headfootfont
@@ -3053,8 +3057,11 @@
       \fancyhead[RO]{\@headfootfont
         \shorttitle\quad\textbullet\quad\@acmArticlePage}%
       \if@ACM@nonacm\else%
-        \fancyfoot[RO,LE]{\footnotesize \@journalNameShort, Vol. \@acmVolume, No.
-        \@acmNumber, Article \@acmArticle.  Publication date: \@acmPubDate.}%
+        \fancyfoot[RO,LE]{\footnotesize 
+        %\@journalNameShort, Vol. \@acmVolume, No.
+        %\@acmNumber, Article \@acmArticle.  
+        PLATEAU Workshop on Programming Languages and Human-Computer Interaction.
+        Publication date: \@acmPubDate.}%
       \fi
     \or % acmtog
       \fancyhead[LE]{\ACM@linecountL\@headfootfont
@@ -3065,12 +3072,14 @@
         \shorttitle\quad\textbullet\quad\@acmArticlePage\ACM@linecountR}%
       \if@ACM@nonacm\else
         \if@ACM@journal@bibstrip
-          \fancyfoot[RO,LE]{\footnotesize \@journalNameShort,
-            Vol. \@acmVolume, No.~\@acmNumber, Article \@acmArticle.
-            Publication date: \@acmPubDate.}%
+          \fancyfoot[RO,LE]{\footnotesize 
+          %\@journalNameShort,
+          %  Vol. \@acmVolume, No.~\@acmNumber, Article \@acmArticle.
+          PLATEAU Workshop on Programming Languages and Human-Computer Interaction.
+          Publication date: \@acmPubDate.}%
         \else
-          \fancyfoot[RO,LE]{\footnotesize \acmConference@shortname,
-            \acmConference@date, \acmConference@venue.}%
+          \fancyfoot[RO,LE]{\footnotesize \plateauConference@shortname,
+            \plateauConference@date, \plateauConference@venue.}%
          \fi
       \fi
     \else % Proceedings
@@ -3089,11 +3098,11 @@
             \ACM@linecountR}%
         \else
           \fancyhead[LE]{\ACM@linecountL\@headfootfont\footnotesize
-            \acmConference@shortname,
-            \acmConference@date, \acmConference@venue}%
+            \plateauConference@shortname,
+            \plateauConference@date, \plateauConference@venue}%
           \fancyhead[RO]{\@headfootfont
-            \acmConference@shortname,
-            \acmConference@date, \acmConference@venue\ACM@linecountR}%
+            \plateauConference@shortname,
+            \plateauConference@date, \plateauConference@venue\ACM@linecountR}%
          \fi
       \fi
     \fi
@@ -3113,11 +3122,11 @@
           \ACM@linecountR}%
       \else
         \fancyhead[LE]{\ACM@linecountL\@headfootfont
-          \acmConference@shortname,
-          \acmConference@date, \acmConference@venue}%
+          \plateauConference@shortname,
+          \plateauConference@date, \plateauConference@venue}%
         \fancyhead[RO]{\@headfootfont
-          \acmConference@shortname,
-          \acmConference@date, \acmConference@venue\ACM@linecountR}%
+          \plateauConference@shortname,
+          \plateauConference@date, \plateauConference@venue\ACM@linecountR}%
        \fi
     \fi
   \fi
@@ -3161,8 +3170,10 @@
       \fi%
     \or % acmsmall
       \if@ACM@nonacm\else%
-        \fancyfoot[RO,LE]{\footnotesize \@journalNameShort, Vol. \@acmVolume, No.
-        \@acmNumber, Article \@acmArticle.  Publication date:
+        \fancyfoot[RO,LE]{\footnotesize 
+        %\@journalNameShort, Vol. \@acmVolume, No.
+        %\@acmNumber, Article \@acmArticle.  
+        Publication date:
         \@acmPubDate.}%
       \fi%
       \fancyhead[LE]{\ACM@linecountL\@acmBadgeL}%
@@ -3171,8 +3182,12 @@
       \fancyhead[RE]{\@acmBadgeR}%
     \or % acmlarge
       \if@ACM@nonacm\else%
-        \fancyfoot[RO,LE]{\footnotesize \@journalNameShort, Vol. \@acmVolume, No.
-        \@acmNumber, Article \@acmArticle.  Publication date:
+        \fancyfoot[RO,LE]{\footnotesize 
+        14th annual PLATEAU Workshop on the intersection of HCI and PL
+        %\@journalNameShort, Vol. \@acmVolume, No.
+        %\@acmNumber, Article \@acmArticle. 
+        PLATEAU Workshop on Programming Languages and Human-Computer Interaction.
+        Publication date:
         \@acmPubDate.}%
       \fi%
       \fancyhead[RO]{\@acmBadgeR}%
@@ -3186,8 +3201,8 @@
             Vol. \@acmVolume, No.~\@acmNumber, Article \@acmArticle.
             Publication date: \@acmPubDate.}%
         \else
-          \fancyfoot[RO,LE]{\footnotesize \acmConference@shortname,
-            \acmConference@date, \acmConference@venue.}%
+          \fancyfoot[RO,LE]{\footnotesize \plateauConference@shortname,
+            \plateauConference@date, \plateauConference@venue.}%
          \fi
       \fi%
       \fancyhead[L]{\ACM@linecountL\@acmBadgeL}%
@@ -3588,6 +3603,8 @@
     \string\baselinestretch\space detected.  Please do not do this for
     ACM submissions!}\fi}
 \normalsize\normalfont\frenchspacing
+
+\def\@copyrightspace{\relax}
 \endinput
 %%
 %% End of file `acmart.cls'.
