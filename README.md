@@ -12,7 +12,7 @@ Specify this year's conference information using the command `\plateauConference
 \plateauConference[PLATEAU '25]{15}{February 17--18, 2025}{Boston, MA}
 ```
 
-Make sure to add the necessary keywords and [ACM CCS Concepts](https://dl.acm.org/ccs) for your work. After you reserve a DOI on KiltHub, specify it using:
+Make sure to add the necessary keywords and [ACM CCS Concepts](https://dl.acm.org/ccs) for your work. After you [reserve a DOI](https://help.figshare.com/article/how-to-share-cite-or-embed-your-items) on [KiltHub](https://kilthub.cmu.edu/), specify it using:
 ```
 \plateauDOI{XX.XXXX/XXXXXXX.XXXXXXX}
 ```
